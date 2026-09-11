@@ -3,64 +3,67 @@ package trains;
 import baggage.BaggageWagon;
 import passenger.PassengerWagon;
 import wagons.RollingStock;
-import wagons.Wagon;
 
 import java.util.ArrayList;
 
 public class PassengerTrain extends RollingStock {
 
-    private final ArrayList<Wagon> wagons;
+    private final ArrayList<BaggageWagon> baggageWagons = new ArrayList<>();
+    private final ArrayList<PassengerWagon> passengerWagons = new ArrayList<>();
 
-    public PassengerTrain(
-            String operator,
-            int weight,
-            ArrayList<Wagon> wagons) {
-
+    public PassengerTrain(String operator, int weight)
+    {
         super(operator, weight);
-        this.wagons = wagons;
     }
 
-    public String getOperator() {
-        return operator;
+    public void addWagon(PassengerWagon wagon)
+    {
+        passengerWagons.add(wagon);
     }
 
-    public int getTotalPassengers() {
-        int totalPassengers = 0;
+    public void addWagon(BaggageWagon wagon)
+    {
+        baggageWagons.add(wagon);
+    }
 
-        for (Wagon wagon : wagons) {
+    public void removeWagon(PassengerWagon wagon)
+    {
+        passengerWagons.remove(wagon);
+    }
 
-            if(wagon instanceof PassengerWagon)
-            {
-                totalPassengers += ((PassengerWagon) wagon).getCurrentNumberOfPassengers();
-            }
+    public void removeWagon(BaggageWagon wagon)
+    {
+        baggageWagons.remove(wagon);
+    }
+
+    public void printInfo()
+    {
+        System.out.printf("\n");
+        System.out.printf("Total passengers:%d\n",getTotalPassengers());
+        System.out.printf("Total baggage:%d\n",getTotalBaggage());
+    }
+
+    private int getTotalPassengers()
+    {
+        int sum = 0;
+
+        for (PassengerWagon wagon : passengerWagons)
+        {
+            sum += wagon.getNumberOfPassengers();
         }
 
-        return totalPassengers;
+        return sum;
     }
 
-    public int getTotalBaggage() {
-        int totalBaggage = 0;
+    private int getTotalBaggage()
+    {
+        int sum = 0;
 
-        for (Wagon wagon : wagons) {
-
-            if(wagon instanceof BaggageWagon)
-            {
-                totalBaggage += ((BaggageWagon) wagon).getCurrentBaggageWeight();
-            }
+        for (BaggageWagon wagon : baggageWagons)
+        {
+            sum += wagon.getBaggageAmount();
         }
 
-        return totalBaggage;
-    }
-
-    public void printTotalPassengersAndBaggage() {
-        System.out.printf(
-                "Total passengers: %d%n",
-                getTotalPassengers()
-        );
-
-        System.out.printf(
-                "Total baggage: %d%n",
-                getTotalBaggage()
-        );
+        return sum;
     }
 }
