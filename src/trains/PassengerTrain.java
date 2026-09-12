@@ -3,37 +3,30 @@ package trains;
 import baggage.BaggageWagon;
 import passenger.PassengerWagon;
 import wagons.RollingStock;
+import wagons.Wagon;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class PassengerTrain extends RollingStock {
 
-    private final ArrayList<BaggageWagon> baggageWagons = new ArrayList<>();
-    private final ArrayList<PassengerWagon> passengerWagons = new ArrayList<>();
+
+    private final ArrayList<Wagon> wagons = new ArrayList<>();
 
     public PassengerTrain(String operator, int weight)
     {
         super(operator, weight);
     }
 
-    public void addWagon(PassengerWagon wagon)
+    public void addWagon(Wagon wagon)
     {
-        passengerWagons.add(wagon);
+        wagons.add(wagon);
     }
 
-    public void addWagon(BaggageWagon wagon)
+    public void removeWagon(Wagon wagon)
     {
-        baggageWagons.add(wagon);
-    }
-
-    public void removeWagon(PassengerWagon wagon)
-    {
-        passengerWagons.remove(wagon);
-    }
-
-    public void removeWagon(BaggageWagon wagon)
-    {
-        baggageWagons.remove(wagon);
+        wagons.remove(wagon);
     }
 
     public void printInfo()
@@ -43,13 +36,42 @@ public class PassengerTrain extends RollingStock {
         System.out.printf("Total baggage:%d\n",getTotalBaggage());
     }
 
+    public void printWagonsInfo()
+    {
+        int i = 1;
+
+        for (Wagon wagon : wagons)
+        {
+            System.out.printf("\nWagon #%d\n",i);
+            wagon.printInfo();
+            i++;
+        }
+    }
+
+    public void sortByComfort()
+    {
+        wagons.sort(Comparator.comparing(Wagon::getComfortLevel));
+    }
+
+    public ArrayList<Wagon> filterByPassengersRange(int min, int max)
+    {
+        return wagons.stream()
+                .filter(wagon -> wagon instanceof PassengerWagon passengerWagon
+                        && passengerWagon.getNumberOfPassengers() >= min
+                        && passengerWagon.getNumberOfPassengers() <= max)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     private int getTotalPassengers()
     {
         int sum = 0;
 
-        for (PassengerWagon wagon : passengerWagons)
+        for (Wagon wagon : wagons)
         {
-            sum += wagon.getNumberOfPassengers();
+            if(wagon instanceof PassengerWagon passengerWagon)
+            {
+                sum += passengerWagon.getNumberOfPassengers();
+            }
         }
 
         return sum;
@@ -59,9 +81,12 @@ public class PassengerTrain extends RollingStock {
     {
         int sum = 0;
 
-        for (BaggageWagon wagon : baggageWagons)
+        for (Wagon wagon : wagons)
         {
-            sum += wagon.getBaggageAmount();
+            if(wagon instanceof BaggageWagon baggageWagon)
+            {
+                sum += baggageWagon.getBaggageAmount();
+            }
         }
 
         return sum;

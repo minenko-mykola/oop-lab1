@@ -12,4 +12,14 @@ public class Wagon extends RollingStock
         super(operator, weight);
         this.comfortLevel = comfortLevel;
     }
+
+    public ComfortLevel getComfortLevel()
+    {
+        return comfortLevel;
+    }
+
+    public void printInfo()
+    {
+
+    }
 }

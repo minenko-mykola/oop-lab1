@@ -17,4 +17,13 @@ public class BaggageWagon extends Wagon {
     public int getBaggageAmount() {
         return baggageAmount;
     }
+
+    @Override
+    public void printInfo()
+    {
+        System.out.printf("Operator:%s\n",this.operator);
+        System.out.printf("Weight:%s\n",this.weight);
+        System.out.printf("Comfort level:%s\n",this.comfortLevel);
+        System.out.printf("Baggage:%d\n",getBaggageAmount());
+    }
 }

@@ -1,10 +1,19 @@
 package menu;
 
+import trains.PassengerTrain;
+
 import java.util.Scanner;
 
 public class MenuManager {
 
-    private static void showMenu() {
+    private final MenuController controller;
+
+    public MenuManager(PassengerTrain train)
+    {
+        this.controller = new MenuController(train);
+    }
+
+    private void show() {
         System.out.println("\n--- Меню залізничного поїзда ---");
         System.out.println("1. Вивести інформацію про вагони");
         System.out.println("2. Порахувати загальну кількість пасажирів і багажу");
@@ -14,31 +23,32 @@ public class MenuManager {
         System.out.print("Оберіть опцію: ");
     }
 
-    public static void runMenu() {
+    public void run() {
 
         Scanner scanner = new Scanner(System.in);
 
         boolean running = true;
         while (running) {
-            showMenu();
+            show();
 
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
                     // printWagonsInfo()
+                    controller.printWagonsInfo();
                     break;
                 case "2":
                     //printTotalPassengersAndBaggage()
-                    MenuService.printInfo();
+                    controller.printInfo();
                     break;
                 case "3":
                     //sortByComfort()
-                    MenuService.sortByComfort();
+                    controller.sortByComfort();
                     break;
                 case "4":
                     //sortByPassengersRange()
-                    MenuService.sortByPassengersRange();
+                    controller.findWagonsByPassengersRange();
                     break;
                 case "0":
                     running = false;
@@ -50,4 +60,5 @@ public class MenuManager {
         }
         scanner.close();
     }
+
 }
