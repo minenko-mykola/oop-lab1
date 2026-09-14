@@ -1,6 +1,7 @@
-package wagons;
+package org.ooptransport.wagons;
 
-import enums.ComfortLevel;
+
+import org.ooptransport.enums.ComfortLevel;
 
 public class Wagon extends RollingStock
 {

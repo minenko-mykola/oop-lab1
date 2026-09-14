@@ -1,4 +1,4 @@
-package wagons;
+package org.ooptransport.wagons;
 
 public class RollingStock
 {

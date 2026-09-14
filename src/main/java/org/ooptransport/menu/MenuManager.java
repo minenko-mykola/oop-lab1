@@ -1,6 +1,7 @@
-package menu;
+package org.ooptransport.menu;
 
-import trains.PassengerTrain;
+
+import org.ooptransport.trains.PassengerTrain;
 
 import java.util.Scanner;
 

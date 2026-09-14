@@ -1,8 +1,8 @@
-import baggage.BaggageWagon;
-import enums.ComfortLevel;
-import menu.MenuManager;
-import passenger.PassengerWagon;
-import trains.PassengerTrain;
+import org.ooptransport.baggage.BaggageWagon;
+import org.ooptransport.enums.ComfortLevel;
+import org.ooptransport.menu.MenuManager;
+import org.ooptransport.passenger.PassengerWagon;
+import org.ooptransport.trains.PassengerTrain;
 
 void main()
 {

@@ -1,8 +1,8 @@
-package menu;
+package org.ooptransport.menu;
 
-import console.ConsoleInput;
-import trains.PassengerTrain;
-import wagons.Wagon;
+import org.ooptransport.console.ConsoleInput;
+import org.ooptransport.trains.PassengerTrain;
+import org.ooptransport.wagons.Wagon;
 
 import java.util.ArrayList;
 

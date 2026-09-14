@@ -1,7 +1,8 @@
-package baggage;
+package org.ooptransport.baggage;
 
-import enums.ComfortLevel;
-import wagons.Wagon;
+
+import org.ooptransport.enums.ComfortLevel;
+import org.ooptransport.wagons.Wagon;
 
 public class BaggageWagon extends Wagon {
 

@@ -1,4 +1,4 @@
-package enums;
+package org.ooptransport.enums;
 
 public enum ComfortLevel
 {

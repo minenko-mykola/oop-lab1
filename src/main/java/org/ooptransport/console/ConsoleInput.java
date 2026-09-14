@@ -1,4 +1,4 @@
-package console;
+package org.ooptransport.console;
 
 public class ConsoleInput
 {

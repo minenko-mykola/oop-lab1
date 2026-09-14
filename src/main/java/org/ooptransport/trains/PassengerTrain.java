@@ -1,9 +1,9 @@
-package trains;
+package org.ooptransport.trains;
 
-import baggage.BaggageWagon;
-import passenger.PassengerWagon;
-import wagons.RollingStock;
-import wagons.Wagon;
+import org.ooptransport.baggage.BaggageWagon;
+import org.ooptransport.passenger.PassengerWagon;
+import org.ooptransport.wagons.RollingStock;
+import org.ooptransport.wagons.Wagon;
 
 import java.util.ArrayList;
 import java.util.Comparator;
