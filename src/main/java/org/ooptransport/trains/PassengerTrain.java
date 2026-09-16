@@ -31,9 +31,9 @@ public class PassengerTrain extends RollingStock {
 
     public void printInfo()
     {
-        System.out.printf("\n");
-        System.out.printf("Total passengers:%d\n",getTotalPassengers());
-        System.out.printf("Total baggage:%d\n",getTotalBaggage());
+        System.out.printf("%n");
+        System.out.printf("Total passengers:%d%n",getTotalPassengers());
+        System.out.printf("Total baggage:%d%n",getTotalBaggage());
     }
 
     public void printWagonsInfo()
@@ -42,7 +42,7 @@ public class PassengerTrain extends RollingStock {
 
         for (Wagon wagon : wagons)
         {
-            System.out.printf("\nWagon #%d\n",i);
+            System.out.printf("%nWagon #%d%n",i);
             wagon.printInfo();
             i++;
         }
